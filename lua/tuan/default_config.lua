@@ -1,6 +1,6 @@
 vim.opt.number = true
 vim.opt.relativenumber = true
-
+vim.opt.termguicolors = true
 -- Highlight current line number
 vim.api.nvim_set_hl(0, 'LineNr', { fg = '#ffaa00', bold = true })
 

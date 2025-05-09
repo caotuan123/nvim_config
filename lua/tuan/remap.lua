@@ -25,7 +25,11 @@ vim.keymap.set("i", "<C-h>", "<Left>")
 vim.keymap.set("i", "<C-l>", "<Right>")
 vim.keymap.set("i", "<C-j>", "<Down>")
 vim.keymap.set("i", "<C-k>", "<Up>")
-
+--navigate in tmux
+vim.keymap.set({"n","i"}, "<C-H>", "<cmd> TmuxNavigateLeft<CR>")
+vim.keymap.set({"n","i"}, "<C-L>", "<cmd> TmuxNavigateRight<CR>")
+vim.keymap.set({"n","i"}, "<C-J>", "<cmd> TmuxNavigateDown<CR>")
+vim.keymap.set({"n","i"}, "<C-K>", "<cmd> TmuxNavigateUp<CR>")
 local builtin = require('telescope.builtin')
 vim.keymap.set('n', '<leader>ff', builtin.find_files, { desc = 'Telescope find files' })
 vim.keymap.set('n', '<leader>fg', builtin.live_grep, { desc = 'Telescope live grep' })
