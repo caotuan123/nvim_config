@@ -1,5 +1,6 @@
 require("tuan.remap")
 require("tuan.default_config")
+require("tuan.telescope_extension")
 
 vim.o.clipboard = "unnamedplus"
 vim.api.nvim_create_autocmd("TextYankPost", {
