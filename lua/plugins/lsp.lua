@@ -28,7 +28,8 @@ return {
             ensure_installed = {
                 "lua_ls",
 		"pyright",
-		"jsonls"
+		"jsonls",
+		"ruff"
             },
             handlers = {
                 function(server_name) -- default handler (optional)
@@ -51,6 +52,24 @@ return {
                         }
                     }
                 end,
+
+		
+                ["ruff"] = function()
+		    local lspconfig = require("lspconfig")
+                    lspconfig.ruff.setup({
+                        capabilities = capabilities,
+                        init_options = {
+                            settings = {
+                                -- Any Ruff settings can go here
+                            },
+                        },
+                        on_attach = function(client, bufnr)
+                            -- Let Pyright handle hover/docs
+                            client.server_capabilities.hoverProvider = false
+                        end,
+                    })
+                end,
+
             }
         })
 

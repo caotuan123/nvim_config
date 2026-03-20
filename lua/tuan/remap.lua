@@ -39,3 +39,12 @@ vim.keymap.set('n', '<leader>fh', telescope.help_tags, { desc = 'Telescope help 
 vim.keymap.set('n', '<leader>fb', telescope_extension.file_browser.file_browser, { desc = 'Telescope file browser' })
 vim.keymap.set('n', '<leader>fl', telescope.lsp_references, { desc = 'Telescope lsp reference' })
 vim.keymap.set('n', '<leader>fc', telescope.git_commits, { desc = 'Telescope git commit' })
+vim.keymap.set('n', '<leader>fr', telescope.git_branches, { desc = 'Telescope git branches'})
+-- conform
+vim.keymap.set("n", "<leader>F", function()
+  require("conform").format({ async = true })
+end)
+-- 
+vim.keymap.set("n", "<leader>e", function()
+  vim.diagnostic.open_float(nil, { focus = false })
+end, { desc = "Show diagnostic" })

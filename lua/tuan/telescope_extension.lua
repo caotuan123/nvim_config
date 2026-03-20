@@ -1,6 +1,7 @@
 require("telescope").setup({
   extensions = {
     file_browser = {
+      hidden = { file_browser = false, folder_browser = false },
       hijack_netrw = true,
     },
     fzf = {
