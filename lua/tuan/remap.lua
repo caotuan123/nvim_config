@@ -48,3 +48,6 @@ end)
 vim.keymap.set("n", "<leader>e", function()
   vim.diagnostic.open_float(nil, { focus = false })
 end, { desc = "Show diagnostic" })
+
+-- Lsp
+vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, { desc = "LSP Rename" })
