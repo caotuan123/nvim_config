@@ -51,3 +51,19 @@ end, { desc = "Show diagnostic" })
 
 -- Lsp
 vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, { desc = "LSP Rename" })
+vim.keymap.set("n", "<leader>ld", vim.lsp.buf.declaration, { desc = "LSP go to declaration" })
+
+-- git diff
+
+vim.keymap.set("n", "<leader>gd", function()
+  local name = vim.api.nvim_buf_get_name(0)
+
+  if name:match("%.git//") or name:match("fugitive:") or vim.wo.diff then
+    vim.cmd("diffoff!")
+    vim.cmd("wincmd p")
+    vim.cmd("only")
+  else
+    vim.cmd("Gdiffsplit")
+  end
+end, { desc = "Toggle Fugitive diff" })
+
