@@ -29,7 +29,8 @@ return {
                 "lua_ls",
 		"pyright",
 		"jsonls",
-		"ruff"
+		"ruff",
+		"vtsls"
             },
             handlers = {
                 function(server_name) -- default handler (optional)

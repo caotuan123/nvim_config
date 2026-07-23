@@ -36,7 +36,12 @@ vim.keymap.set('n', '<leader>ff', telescope.find_files, { desc = 'Telescope find
 vim.keymap.set('n', '<leader>fg', telescope.live_grep, { desc = 'Telescope live grep' })
 vim.keymap.set('n', '<leader>fu', telescope.buffers, { desc = 'Telescope buffers' })
 vim.keymap.set('n', '<leader>fh', telescope.help_tags, { desc = 'Telescope help tags' })
-vim.keymap.set('n', '<leader>fb', telescope_extension.file_browser.file_browser, { desc = 'Telescope file browser' })
+vim.keymap.set('n', '<leader>fb', function()
+	telescope_extension.file_browser.file_browser({
+		path = "%:p:h",
+		select_buffer = true,
+	})
+end, { desc = 'Telescope file browser' })
 vim.keymap.set('n', '<leader>fl', telescope.lsp_references, { desc = 'Telescope lsp reference' })
 vim.keymap.set('n', '<leader>fc', telescope.git_commits, { desc = 'Telescope git commit' })
 vim.keymap.set('n', '<leader>fr', telescope.git_branches, { desc = 'Telescope git branches'})
