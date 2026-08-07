@@ -30,7 +30,10 @@ return {
 		"pyright",
 		"jsonls",
 		"ruff",
-		"vtsls"
+		"vtsls",
+		"rust_analyzer",
+		"clangd",
+		"gopls",
             },
             handlers = {
                 function(server_name) -- default handler (optional)
