@@ -34,6 +34,7 @@ return {
 		"rust_analyzer",
 		"clangd",
 		"gopls",
+		"svelte"
             },
             handlers = {
                 function(server_name) -- default handler (optional)
