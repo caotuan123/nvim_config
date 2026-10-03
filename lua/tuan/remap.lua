@@ -45,6 +45,30 @@ end, { desc = 'Telescope file browser' })
 vim.keymap.set('n', '<leader>fl', telescope.lsp_references, { desc = 'Telescope lsp reference' })
 vim.keymap.set('n', '<leader>fc', telescope.git_commits, { desc = 'Telescope git commit' })
 vim.keymap.set('n', '<leader>fr', telescope.git_branches, { desc = 'Telescope git branches'})
+vim.keymap.set('n', '<leader>fs', function()
+	local current_file = vim.api.nvim_buf_get_name(0)
+	local initial_selection = true
+	telescope.git_status({
+		attach_mappings = function(prompt_bufnr)
+			local picker = require('telescope.actions.state').get_current_picker(prompt_bufnr)
+			picker:register_completion_callback(function(self)
+				if not initial_selection then
+					return
+				end
+				initial_selection = false
+				local index = 0
+				for entry in self.manager:iter() do
+					index = index + 1
+					if entry.path == current_file then
+						self:set_selection(self:get_row(index))
+						break
+					end
+				end
+			end)
+			return true
+		end,
+	})
+end, { desc = 'Telescope git status (select current file)' })
 -- conform
 vim.keymap.set("n", "<leader>F", function()
   require("conform").format({ async = true })
@@ -57,6 +81,13 @@ end, { desc = "Show diagnostic" })
 -- Lsp
 vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, { desc = "LSP Rename" })
 vim.keymap.set("n", "<leader>ld", vim.lsp.buf.declaration, { desc = "LSP go to declaration" })
+vim.keymap.set("n", "<leader>lf", vim.lsp.buf.definition, { desc = "LSP go to definition" })
+vim.keymap.set("n", "]r", function()
+  require("illuminate").goto_next_reference(true)
+end, { desc = "Next reference in current file" })
+vim.keymap.set("n", "[r", function()
+  require("illuminate").goto_prev_reference(true)
+end, { desc = "Previous reference in current file" })
 
 -- git diff
 
@@ -71,4 +102,3 @@ vim.keymap.set("n", "<leader>gd", function()
     vim.cmd("Gdiffsplit")
   end
 end, { desc = "Toggle Fugitive diff" })
-
